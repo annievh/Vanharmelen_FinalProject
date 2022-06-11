@@ -1,0 +1,47 @@
+﻿@model List<Vanharmelen_FinalProject.Models.InvoiceLineItem>
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All InvoiceLineItems</h2>
+
+<a href="/InvoiceLineItems/Upsert">Add New</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.Search()" />
+    </div>
+</div>
+
+<table id="tblCustomers" class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Invoice Id</th>
+            <th onclick="Sortable.Sort(1);">Product Code</th>
+            <th onclick="Sortable.Sort(2);">Unit Price</th>
+            <th onclick="Sortable.Sort(3);">Quantity</th>
+            <th onclick="Sortable.Sort(4);">Item Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var invoiceLineItem in Model)
+        {
+            <tr>
+                <td>@invoiceLineItem.InvoiceID</td>
+                <td>@invoiceLineItem.ProductCode</td>
+                <td>@invoiceLineItem.UnitPrice</td>
+                <td>@invoiceLineItem.Quantity</td>
+                <td>@invoiceLineItem.ItemTotal</td>
+                <td>
+                    <a href="/InvoiceLineItems/Upsert">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    Sortable.baseUrl = '/InvoiceLineItems/All';
+</script>

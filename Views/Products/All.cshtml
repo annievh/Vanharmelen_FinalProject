@@ -1,0 +1,46 @@
+﻿@model List<Vanharmelen_FinalProject.Models.Product>
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All Products</h2>
+
+<a href="/Products/Upsert">Add New</a>
+
+<div class="row">
+    <div class="col-md-6">
+        <input id="txtSearch" type="text" class="form-control" placeholder="Search..." />
+    </div>
+    <div class="col-md-6">
+        <input type="button" class="btn btn-info" value="Search" onclick="Sortable.Search()" />
+    </div>
+</div>
+
+<table id="tblProducts" class="sortable table table-hover">
+    <thead>
+        <tr>
+            <th onclick="Sortable.Sort(0);">Product Code</th>
+            <th onclick="Sortable.Sort(1);">Description</th>
+            <th onclick="Sortable.Sort(2);">Unit Price</th>
+            <th onclick="Sortable.Sort(3);">On Hand Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductCode</td>
+                <td>@product.Description</td>
+                <td>@product.UnitPrice</td>
+                <td>@product.OnHandQuantity</td>
+                <td>
+                    <a href="/Products/Upsert">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    Sortable.baseUrl = '/Products/All';
+</script>
+

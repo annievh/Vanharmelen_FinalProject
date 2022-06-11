@@ -1,0 +1,41 @@
+﻿@model Vanharmelen_FinalProject.Models.UpsertInvoiceLineItems
+@{
+    ViewBag.Title = "Upsert";
+}
+<h2>Add an InvoiceLineItem</h2>
+@using (Html.BeginForm("Upsert", "InvoiceLineItems", FormMethod.Post))
+{
+
+    @Html.HiddenFor(i => i.InvoiceLineItem.InvoiceID)
+    // @Html.LabelFor(i => i.InvoiceLineItem.InvoiceID, htmlAttributes: new { @class = "control-label col-md-2" });
+    @*<select class="form-control" name="InvoiceLineItem.InvoiceID">
+            @foreach (var invoice in Model.Invoices)
+            {
+                <option value="@invoice.InvoiceID">@invoice.InvoiceID</option>
+            }
+        </select>*@
+
+    @Html.HiddenFor(i => i.InvoiceLineItem.ProductCode, htmlAttributes: new { @class = "control-label col-md-2" });
+    @*@Html.LabelFor(i => i.InvoiceLineItem.ProductCode, htmlAttributes: new { @class = "control-label col-md-2" });
+        <select class="form-control" name="InvoiceLineItem.ProductCode">
+            @foreach (var product in Model.Products)
+            {
+                <option value="@product.ProductCode">@product.ProductCode</option>
+            }
+        </select>*@
+
+
+    @Html.LabelFor(i => i.InvoiceLineItem.UnitPrice, htmlAttributes: new { @class = "control-label col-md-2" });
+   
+    <input type="number" name="InvoiceLineItem.UnitPrice" class="form-control" />
+
+    @Html.LabelFor(i => i.InvoiceLineItem.Quantity, htmlAttributes: new { @class = "control-label col-md-2" });
+
+    <input type="number" name="InvoiceLineItem.Quantity" class="form-control" />
+
+    @Html.LabelFor(i => i.InvoiceLineItem.ItemTotal, htmlAttributes: new { @class = "control-label col-md-2" });
+
+    <input type="number" name="InvoiceLineItem.ItemTotal" class="form-control" />
+
+    <input type="submit" value="submit" class="btn btn-info" />
+}
